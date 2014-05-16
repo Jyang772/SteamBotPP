@@ -19,3 +19,18 @@
 *.exe
 *.out
 *.app
+
+#Misc
+Makefile
+cmake_install.cmake
+CMakeCache.txt
+
+#Folders
+CMakeFiles
+Bin/Debug/*
+Bin/Release/*
+!Bin/Debug/uis
+!Bin/Debug/uis/*
+
+# Temp Files
+*.*~

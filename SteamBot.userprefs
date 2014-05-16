@@ -1,0 +1,31 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BotManager/consoleApp/ConsoleApp.cpp">
+    <Files>
+      <File FileName="BotManager/main.cpp" Line="21" Column="5" />
+      <File FileName="BotManager/consoleApp/ConsoleApp.h" Line="19" Column="24" />
+      <File FileName="BotManager/consoleApp/ConsoleApp.cpp" Line="28" Column="24" />
+      <File FileName="BotManager/Logger.h" Line="3" Column="7" />
+      <File FileName="BotManager/Logger.cpp" Line="91" Column="16" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="BotManager" expanded="True" selected="True">
+            <Node name="Packages" expanded="True" />
+            <Node name="consoleApp" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True">
+          <Node name="BotManager" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
