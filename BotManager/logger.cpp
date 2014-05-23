@@ -62,6 +62,11 @@ void Logger::RedirectConsoleOutput(consoleLogger outputFunc)
 	this->conLogger = outputFunc;
 }
 
+void Logger::ResetConsoleOutput()
+{
+	this->conLogger = &DefaultConsoleLogger;
+}
+
 void Logger::LogLevelStr(LogLevel type, char* buffer, int bufferSize)
 {
 	switch(type)
@@ -136,7 +141,7 @@ void Logger::Log(char* logMSG, LogLevel type, bool forceConsole)
 	snprintf(output, sizeof(output), "%s%s\n", starterOut, logMSG);
 	if ((type >= this->cLogLevel && type != LogLevel_None) || forceConsole)
 	{
-		if (!this->conLogger(output, sizeof(output)))
+		if (!this->conLogger(output, strlen(output)))
 			cout << "Error: Unable to log to console we were given!" << endl;
 	}
 	if (!this->LogFile(output))

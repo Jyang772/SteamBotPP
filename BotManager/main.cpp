@@ -19,7 +19,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gtk/gtk.h>
 #include "consoleWindow.h"
 #include <iostream>
 
@@ -36,8 +35,19 @@ int main (int argc, char *argv[])
 		delete logger;
 		return 1;
 	}
-	delete logger;
 	gtk_init(&argc, &argv);
-	//gtk_main();
+	ConsoleWindow *console = new ConsoleWindow((char*)"BotManager Console", (char*)"uis/mainConsole.ui", logger, &status, errorBuffer, sizeof(errorBuffer));
+	if (status != 0)
+	{
+		logger->LogError((char*)errorBuffer);
+		delete console;
+		delete logger;
+		return 1;
+	}
+	gtk_main();
+	logger->ResetConsoleOutput();
+	logger->LogWarning((char*)"BotManager is now exitting.");
+	delete console;
+	delete logger;
 	return 0;
 }

@@ -1,18 +1,19 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BotManager/Logger.h">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BotManager/main.cpp">
     <Files>
-      <File FileName="BotManager/main.cpp" Line="31" Column="13" />
-      <File FileName="BotManager/Logger.h" Line="51" Column="21" />
-      <File FileName="BotManager/Logger.cpp" Line="58" Column="21" />
-      <File FileName="BotManager/consoleWindow.h" Line="23" Column="7" />
+      <File FileName="BotManager/main.cpp" Line="39" Column="86" />
+      <File FileName="BotManager/logger.h" Line="54" Column="45" />
+      <File FileName="BotManager/logger.cpp" Line="220" Column="37" />
+      <File FileName="BotManager/consoleWindow.h" Line="34" Column="18" />
+      <File FileName="BotManager/consoleWindow.cpp" Line="29" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="BotManager" expanded="True">
             <Node name="Packages" expanded="True" />
-            <Node name="Logger.h" selected="True" />
+            <Node name="main.cpp" selected="True" />
           </Node>
         </State>
       </Pad>

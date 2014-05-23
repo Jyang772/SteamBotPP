@@ -45,6 +45,14 @@ namespace BotManager
 			Logger(char* loggerName, char* loggerShortName, char* logFileName, int *status, char* errorBuffer, int bufferSize);
 			virtual ~Logger();
 			virtual void RedirectConsoleOutput(consoleLogger outputFunc);
+			virtual void ResetConsoleOutput();
+			virtual void LogNoneWithConsole(char *format, ...);
+			virtual void LogNone(char *format, ...);
+			virtual void LogDebug(char *format, ...);
+			virtual void LogInfo(char *format, ...);
+			virtual void LogSuccess(char *format, ...);
+			virtual void LogWarning(char *format, ...);
+			virtual void LogError(char *format, ...);
 		private:
 			char loggerName[30];
 			char loggerShortName[10];
@@ -56,13 +64,6 @@ namespace BotManager
 			virtual bool LogFile(char* output);
 			virtual void Log(char* logMSG, LogLevel type, bool forceConsole);
 			virtual void Log(char* logMSG, LogLevel type);
-			virtual void LogNoneWithConsole(char *format, ...);
-			virtual void LogNone(char *format, ...);
-			virtual void LogDebug(char *format, ...);
-			virtual void LogInfo(char *format, ...);
-			virtual void LogSuccess(char *format, ...);
-			virtual void LogWarning(char *format, ...);
-			virtual void LogError(char *format, ...);
 	};
 }
 #endif //_Logger_included

@@ -14,6 +14,7 @@
     <Packages>
       <Packages>
         <Package file="/usr/lib/x86_64-linux-gnu/pkgconfig/gtk+-3.0.pc" name="GTK+" IsProject="False" />
+        <Package file="/usr/lib/x86_64-linux-gnu/pkgconfig/glib-2.0.pc" name="GLib" IsProject="False" />
       </Packages>
     </Packages>
   </PropertyGroup>

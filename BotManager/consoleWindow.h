@@ -21,5 +21,18 @@
 
 #ifndef _consoleWindow_included
 #define _consoleWindow_included
+#include <gtk/gtk.h>
 #include "logger.h"
+
+namespace BotManager
+{
+	class ConsoleWindow
+	{
+		public:
+			ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger *logger, int *status, char* errorBuffer, int bufferSize);
+			virtual ~ConsoleWindow();
+		private:
+			path consoleUiFile;
+	};
+}
 #endif
