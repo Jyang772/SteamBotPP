@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="main.cpp" />
     <Compile Include="logger.cpp" />
+    <Compile Include="consoleWindow.cpp" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
