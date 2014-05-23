@@ -22,12 +22,13 @@
     <OutputPath>..\Bin\Debug</OutputPath>
     <OutputName>BotManager</OutputName>
     <CompileTarget>Bin</CompileTarget>
-    <DefineSymbols>DEBUG MONODEVELOP</DefineSymbols>
+    <DefineSymbols>Debug MONODEVELOP</DefineSymbols>
     <SourceDirectory>.</SourceDirectory>
     <ConsolePause>false</ConsolePause>
     <ExtraCompilerArguments>--std=c++11 -g -rdynamic</ExtraCompilerArguments>
     <ExtraLinkerArguments>-lboost_filesystem -lboost_system</ExtraLinkerArguments>
     <OptimizationLevel>3</OptimizationLevel>
+    <WarningLevel>All</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>..\Bin\Release</OutputPath>
@@ -40,10 +41,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="main.cpp" />
+    <Compile Include="logger.cpp" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
       <Properties>
+        <Policies>
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" NoTabsAfterNonTabs="True" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-c++src" />
+          <TextStylePolicy FileWidth="120" TabsToSpaces="False" NoTabsAfterNonTabs="True" inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-chdr" />
+          <StandardHeader Text=" &#xA; ${FileName}&#xA; &#xA; Author:&#xA;      ${AuthorName} &lt;${AuthorEmail}&gt;&#xA;&#xA; Copyright (c) ${Year} ${CopyrightHolder}&#xA;&#xA; This program is free software: you can redistribute it and/or modify&#xA; it under the terms of the GNU General Public License as published by&#xA; the Free Software Foundation, either version 3 of the License, or&#xA; (at your option) any later version.&#xA;&#xA; This program is distributed in the hope that it will be useful,&#xA; but WITHOUT ANY WARRANTY; without even the implied warranty of&#xA; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xA; GNU General Public License for more details.&#xA;&#xA; You should have received a copy of the GNU General Public License&#xA; along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;." IncludeInNewFiles="True" />
+        </Policies>
         <MonoDevelop.Autotools.MakefileInfo RelativeMakefileName="../Makefile" BuildTargetName="" CleanTargetName="">
           <BuildFilesVar />
           <DeployFilesVar />
@@ -57,4 +64,8 @@
       </Properties>
     </MonoDevelop>
   </ProjectExtensions>
+  <ItemGroup>
+    <None Include="consoleWindow.h" />
+    <None Include="logger.h" />
+  </ItemGroup>
 </Project>

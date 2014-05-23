@@ -1,5 +1,5 @@
 //
-//  main.cpp
+//  consoleWindow.h
 //
 //  Author:
 //       WildCard65 <lollol222gg@gmail.com>
@@ -19,25 +19,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <gtk/gtk.h>
-#include "consoleWindow.h"
-#include <iostream>
-
-using namespace BotManager;
-
-int main (int argc, char *argv[])
-{
-	char errorBuffer[256];
-	int status;
-	Logger *logger = new Logger((char*)"BotMgrLogger", (char*)"BOTMGR", (char*)"BotLog.log", &status, errorBuffer, sizeof(errorBuffer));
-	if (status != 0)
-	{
-		cout << "ERROR: " << errorBuffer << endl;
-		delete logger;
-		return 1;
-	}
-	delete logger;
-	gtk_init(&argc, &argv);
-	//gtk_main();
-	return 0;
-}
+#ifndef _consoleWindow_included
+#define _consoleWindow_included
+#include "logger.h"
+#endif
