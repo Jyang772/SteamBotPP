@@ -21,11 +21,19 @@
 
 #include "consoleWindow.h"
 #include <iostream>
+#define MIN_GTK_MAJOR 3
+#define MIN_GTK_MINOR 4
+#define MIN_GTK_MICRO 2
 
 using namespace BotManager;
 
 int main (int argc, char *argv[])
 {
+	if (!GTK_CHECK_VERSION(MIN_GTK_MAJOR, MIN_GTK_MINOR, MIN_GTK_MICRO))
+	{
+		cout << "GTK that I'm compile against is too old! I require: " << MIN_GTK_MAJOR << "." << MIN_GTK_MINOR << "." << MIN_GTK_MICRO << endl;
+		return 1;
+	}
 	char errorBuffer[256];
 	int status;
 	Logger *logger = new Logger((char*)"BotMgrLogger", (char*)"BOTMGR", (char*)"BotLog.log", &status, errorBuffer, sizeof(errorBuffer));

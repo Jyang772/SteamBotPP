@@ -41,7 +41,7 @@ namespace BotManager
 	class Logger
 	{
 		public:
-			typedef bool (*consoleLogger)(char* output, int outputSize);
+			typedef bool (*consoleLogger)(char* output, int outputSize, LogLevel type);
 			Logger(char* loggerName, char* loggerShortName, char* logFileName, int *status, char* errorBuffer, int bufferSize);
 			virtual ~Logger();
 			virtual void RedirectConsoleOutput(consoleLogger outputFunc);

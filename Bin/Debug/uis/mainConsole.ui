@@ -2,6 +2,7 @@
 <!-- Generated with glade 3.16.1 -->
 <interface>
   <requires lib="gtk+" version="3.10"/>
+  <object class="GtkTextBuffer" id="consoleBuffer"/>
   <object class="GtkWindow" id="consoleWindow">
     <property name="width_request">1000</property>
     <property name="height_request">500</property>
@@ -12,9 +13,6 @@
     <property name="default_height">750</property>
     <property name="gravity">center</property>
     <child>
-      <object class="GtkTextBuffer" id="consoleBuffer">
-        <property name="text"></property>
-      </object>
       <object class="GtkGrid" id="mainGrid">
         <property name="width_request">1000</property>
         <property name="height_request">500</property>
@@ -73,8 +71,9 @@
             <property name="shadow_type">in</property>
             <child>
               <object class="GtkTextView" id="consoleView">
-                <property name="editable">false</property>
-                <property name="cursor-visible">false</property>
+                <property name="can_focus">False</property>
+                <property name="editable">False</property>
+                <property name="cursor_visible">False</property>
                 <property name="buffer">consoleBuffer</property>
               </object>
             </child>
@@ -88,7 +87,8 @@
         </child>
         <child>
           <object class="GtkLabel" id="cmdLabel">
-            <property name="label">botmgr></property>
+            <property name="can_focus">False</property>
+            <property name="label">botmgr&gt;</property>
           </object>
           <packing>
             <property name="left_attach">0</property>
@@ -96,6 +96,12 @@
             <property name="width">1</property>
             <property name="height">1</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
+        </child>
+        <child>
+          <placeholder/>
         </child>
         <child>
           <placeholder/>

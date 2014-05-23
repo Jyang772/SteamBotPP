@@ -25,7 +25,7 @@
 
 using namespace BotManager;
 
-bool DefaultConsoleLogger(char* output, int outputSize)
+bool DefaultConsoleLogger(char* output, int outputSize, LogLevel type)
 {
 	cout << output;
 	return true;
@@ -141,7 +141,7 @@ void Logger::Log(char* logMSG, LogLevel type, bool forceConsole)
 	snprintf(output, sizeof(output), "%s%s\n", starterOut, logMSG);
 	if ((type >= this->cLogLevel && type != LogLevel_None) || forceConsole)
 	{
-		if (!this->conLogger(output, strlen(output)))
+		if (!this->conLogger(output, strlen(output), type))
 			cout << "Error: Unable to log to console we were given!" << endl;
 	}
 	if (!this->LogFile(output))
