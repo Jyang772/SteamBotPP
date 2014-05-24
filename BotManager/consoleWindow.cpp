@@ -21,6 +21,7 @@
 
 #include "consoleWindow.h"
 #define gtk_builder_get_widget(builder, id) GTK_WIDGET(gtk_builder_get_object(builder, id))
+#define CMD_LOG_LINE "botmgr> "
 
 using namespace BotManager;
 
@@ -68,6 +69,26 @@ bool GtkConsoleOutput(char* output, int outputSize, LogLevel type)
 	return true;
 }
 
+bool GtkConsoleOutput(char* output, int outputSize)
+{
+	return GtkConsoleOutput(output, outputSize, LogLevel_None);
+}
+
+static void enterCommand(GtkWidget *widget, gpointer data)
+{
+	const gchar* inputLine = gtk_entry_get_text(GTK_ENTRY(cmdLine));
+	if(inputLine[0] != '\0')
+	{
+		char input[sizeof(inputLine)+2];
+		snprintf(input, sizeof(input), "%s\n", inputLine);
+		char output[sizeof(input)+strlen(CMD_LOG_LINE)];
+		snprintf(output, sizeof(output), "%s%s", CMD_LOG_LINE, input);
+		GtkConsoleOutput(output, strlen(output));
+		conLogger->LogDebug((char*)"Recieved command input: %s", inputLine);
+	}
+	gtk_entry_set_text(GTK_ENTRY(cmdLine), "");
+}
+
 ConsoleWindow::ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger *logger, int *status, char* errorBuffer, int bufferSize)
 {
 	this->consoleUiFile += consoleUiFilePath;
@@ -95,6 +116,10 @@ ConsoleWindow::ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger
 		warningTag = gtk_text_buffer_create_tag(GTK_TEXT_BUFFER(conBuffer), "Warning Color Tag", "foreground", "#FF9900", NULL);
 		errorTag = gtk_text_buffer_create_tag(GTK_TEXT_BUFFER(conBuffer), "Error Color Tag", "foreground", "#FF0000", NULL);
 		defaultTag = gtk_text_buffer_create_tag(GTK_TEXT_BUFFER(conBuffer), "Default Color Tag", "foreground", "#FFFFFF", NULL);
+		cmdSubmit = gtk_builder_get_widget(builder, "cmdSubmit");
+		g_signal_connect(cmdSubmit, "clicked", G_CALLBACK(enterCommand), NULL);
+		cmdLine = gtk_builder_get_widget(builder, "cmdLine");
+		g_signal_connect(cmdLine, "activate", G_CALLBACK(enterCommand), NULL);
 		conLogger->LogDebug((char*)"%s has been successfully built!", consoleTitle);
 		conLogger->RedirectConsoleOutput(GtkConsoleOutput);
 		gtk_widget_show_all(window);
