@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef ServerMode
 #include "consoleWindow.h"
 #define gtk_builder_get_widget(builder, id) GTK_WIDGET(gtk_builder_get_object(builder, id))
@@ -39,6 +40,12 @@ GtkTextTag *warningTag;
 GtkTextTag *errorTag;
 GtkTextTag *defaultTag;
 consoleCmdHandler *localCmdHandler;
+
+CmdStatus QuitCommand(char* msg, char *args[], int numArgs)
+{
+	gtk_widget_destroy(window);
+	return CmdStatus_Passed;
+}
 
 bool GtkConsoleOutput(char* output, int outputSize, LogLevel type)
 {

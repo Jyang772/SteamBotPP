@@ -62,7 +62,7 @@ int main (int argc, char *argv[])
 	gtk_main();
 	logger->ResetConsoleOutput();
 	#else
-	logger->LogInfo("Todo: Build server mode!");
+	logger->LogInfo((char*)"Todo: Build server mode!");
 	#endif
 	logger->LogWarning((char*)"BotManager is now exitting.");
 	#ifndef ServerMode
