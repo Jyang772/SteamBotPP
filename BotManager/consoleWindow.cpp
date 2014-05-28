@@ -38,6 +38,7 @@ GtkTextTag *successTag;
 GtkTextTag *warningTag;
 GtkTextTag *errorTag;
 GtkTextTag *defaultTag;
+consoleCmdHandler *localCmdHandler;
 
 bool GtkConsoleOutput(char* output, int outputSize, LogLevel type)
 {
@@ -79,24 +80,32 @@ static void enterCommand(GtkWidget *widget, gpointer data)
 	const gchar* inputLine = gtk_entry_get_text(GTK_ENTRY(cmdLine));
 	if(inputLine[0] != '\0')
 	{
-		char input[sizeof(inputLine)+2];
-		snprintf(input, sizeof(input), "%s\n", inputLine);
+		char input[strlen(inputLine)+5];
+		sprintf(input, "%s\n", inputLine);
 		char output[sizeof(input)+strlen(CMD_LOG_LINE)];
-		snprintf(output, sizeof(output), "%s%s", CMD_LOG_LINE, input);
+		sprintf(output, "%s%s", CMD_LOG_LINE, input);
 		GtkConsoleOutput(output, strlen(output));
 		conLogger->LogDebug((char*)"Recieved command input: %s", inputLine);
+		localCmdHandler->FireCommand((char*)inputLine);
 	}
 	gtk_entry_set_text(GTK_ENTRY(cmdLine), "");
 }
 
-ConsoleWindow::ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger *logger, int *status, char* errorBuffer, int bufferSize)
+CmdStatus QuitCommand(char* msg, char *args[], int numArgs)
+{
+	gtk_widget_destroy(window);
+	return CmdStatus_Passed;
+}
+
+ConsoleWindow::ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger *logger, consoleCmdHandler *cmdHandler, int *status, char* errorBuffer)
 {
 	this->consoleUiFile += consoleUiFilePath;
 	conLogger = logger;
 	conLogger->LogDebug((char*)"%s will now attempt to be built.", consoleTitle);
+	localCmdHandler = cmdHandler;
 	if (!exists(this->consoleUiFile))
 	{
-		snprintf(errorBuffer, bufferSize, "Can't find file %s\n", consoleUiFilePath);
+		sprintf(errorBuffer, "Can't find file %s\n", consoleUiFilePath);
 		*status=1;
 	}
 	else
@@ -123,7 +132,8 @@ ConsoleWindow::ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger
 		conLogger->LogDebug((char*)"%s has been successfully built!", consoleTitle);
 		conLogger->RedirectConsoleOutput(GtkConsoleOutput);
 		gtk_widget_show_all(window);
-		strncpy(errorBuffer, "", bufferSize);
+		localCmdHandler->AddConsoleCommand((char*)"quit", (char*)"Quits program(without clicking close button)", QuitCommand);
+		strcpy(errorBuffer, "");
 		*status=0;
 	}
 }

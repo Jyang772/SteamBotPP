@@ -43,6 +43,7 @@
     <Compile Include="main.cpp" />
     <Compile Include="logger.cpp" />
     <Compile Include="consoleWindow.cpp" />
+    <Compile Include="consoleCmdHandler.cpp" />
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>
@@ -68,5 +69,6 @@
   <ItemGroup>
     <None Include="consoleWindow.h" />
     <None Include="logger.h" />
+    <None Include="consoleCmdHandler.h" />
   </ItemGroup>
 </Project>

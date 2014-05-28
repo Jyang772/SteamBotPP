@@ -38,6 +38,7 @@
           <object class="GtkEntry" id="cmdLine">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
+            <property name="max-length">0</property>
           </object>
           <packing>
             <property name="left_attach">1</property>

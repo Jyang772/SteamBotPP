@@ -42,7 +42,7 @@ namespace BotManager
 	{
 		public:
 			typedef bool (*consoleLogger)(char* output, int outputSize, LogLevel type);
-			Logger(char* loggerName, char* loggerShortName, char* logFileName, int *status, char* errorBuffer, int bufferSize);
+			Logger(char* loggerName, char* loggerShortName, char* logFileName, int *status, char* errorBuffer);
 			virtual ~Logger();
 			virtual void RedirectConsoleOutput(consoleLogger outputFunc);
 			virtual void ResetConsoleOutput();
@@ -60,7 +60,7 @@ namespace BotManager
 			path logsFolderPath;
 			path logFilePath;
 			consoleLogger conLogger;
-			virtual void LogLevelStr(LogLevel type, char* buffer, int bufferSize);
+			virtual void LogLevelStr(LogLevel type, char* buffer);
 			virtual bool LogFile(char* output);
 			virtual void Log(char* logMSG, LogLevel type, bool forceConsole);
 			virtual void Log(char* logMSG, LogLevel type);

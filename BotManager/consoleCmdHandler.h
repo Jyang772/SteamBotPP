@@ -1,5 +1,5 @@
 //
-//  consoleWindow.h
+//  consoleCmdHandler.h
 //
 //  Author:
 //       WildCard65 <lollol222gg@gmail.com>
@@ -19,20 +19,33 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _consoleWindow_included
-#define _consoleWindow_included
-#include <gtk/gtk.h>
-#include "consoleCmdHandler.h"
+#ifndef _consoleCmdHandler_included
+#define _consoleCmdHandler_included
+#include "logger.h"
+#include <string>
+#include <tuple>
+#include <map>
 
 namespace BotManager
 {
-	class ConsoleWindow
+	enum CmdStatus
+	{
+		CmdStatus_None,
+		CmdStatus_Passed,
+		CmdStatus_Errored,
+	};
+	typedef CmdStatus (*cmdFunc)(char* msg, char *args[], int numArgs);
+	typedef tuple<string, bool> cmdArgInfo;
+	typedef map<string, cmdArgInfo> cmdArgInfoMap;
+	typedef pair<string, cmdArgInfo> cmdArgInfoPair;
+	class consoleCmdHandler
 	{
 		public:
-			ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger *logger, consoleCmdHandler *cmdHandler, int *status, char* errorBuffer);
-			virtual ~ConsoleWindow();
-		private:
-			path consoleUiFile;
+			consoleCmdHandler(Logger *logger);
+			virtual ~consoleCmdHandler();
+			virtual bool AddConsoleCommand(char* cmdName, char* cmdDesc, cmdFunc callBack, bool hasArgs, cmdArgInfoMap args);
+			virtual bool AddConsoleCommand(char* cmdName, char* cmdDesc, cmdFunc callback);
+			virtual void FireCommand(char* msg);
 	};
 }
 #endif

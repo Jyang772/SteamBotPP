@@ -1,19 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BotManager/consoleWindow.cpp">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BotManager/consoleCmdHandler.cpp">
     <Files>
-      <File FileName="BotManager/logger.h" Line="44" Column="77" />
-      <File FileName="BotManager/logger.cpp" Line="28" Column="70" />
-      <File FileName="BotManager/consoleWindow.h" Line="34" Column="11" />
-      <File FileName="BotManager/consoleWindow.cpp" Line="99" Column="54" />
+      <File FileName="BotManager/logger.h" Line="1" Column="1" />
+      <File FileName="BotManager/logger.cpp" Line="1" Column="1" />
+      <File FileName="BotManager/consoleWindow.h" Line="32" Column="108" />
+      <File FileName="BotManager/consoleWindow.cpp" Line="89" Column="39" />
+      <File FileName="BotManager/consoleCmdHandler.h" Line="46" Column="110" />
+      <File FileName="BotManager/consoleCmdHandler.cpp" Line="115" Column="42" />
+      <File FileName="BotManager/main.cpp" Line="48" Column="121" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="BotManager" expanded="True">
-            <Node name="Packages" expanded="True">
-              <Node name="/usr/lib/x86_64-linux-gnu/pkgconfig/gtk+-3.0.pc" selected="True" />
-            </Node>
+            <Node name="Packages" expanded="True" />
+            <Node name="consoleCmdHandler.cpp" selected="True" />
           </Node>
         </State>
       </Pad>

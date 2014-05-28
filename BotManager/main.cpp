@@ -36,15 +36,16 @@ int main (int argc, char *argv[])
 	}
 	char errorBuffer[256];
 	int status;
-	Logger *logger = new Logger((char*)"BotMgrLogger", (char*)"BOTMGR", (char*)"BotLog.log", &status, errorBuffer, sizeof(errorBuffer));
+	Logger *logger = new Logger((char*)"BotMgrLogger", (char*)"BOTMGR", (char*)"BotLog.log", &status, errorBuffer);
 	if (status != 0)
 	{
 		cout << "ERROR: " << errorBuffer << endl;
 		delete logger;
 		return 1;
 	}
+	consoleCmdHandler *cmdHandler = new consoleCmdHandler(logger);
 	gtk_init(&argc, &argv);
-	ConsoleWindow *console = new ConsoleWindow((char*)"BotManager Console", (char*)"uis/mainConsole.ui", logger, &status, errorBuffer, sizeof(errorBuffer));
+	ConsoleWindow *console = new ConsoleWindow((char*)"BotManager Console", (char*)"uis/mainConsole.ui", logger, cmdHandler, &status, errorBuffer);
 	if (status != 0)
 	{
 		logger->LogError((char*)errorBuffer);

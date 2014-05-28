@@ -31,25 +31,25 @@ bool DefaultConsoleLogger(char* output, int outputSize, LogLevel type)
 	return true;
 }
 
-Logger::Logger(char* loggerName, char* loggerShortName, char* logFileName, int *status, char* errorBuffer, int bufferSize)
+Logger::Logger(char* loggerName, char* loggerShortName, char* logFileName, int *status, char* errorBuffer)
 {
 	this->logsFolderPath += "logs/";
 	this->logFilePath += this->logsFolderPath;
 	this->logFilePath += logFileName;
-	strncpy(this->loggerName, loggerName, 30);
-	strncpy(this->loggerShortName, loggerShortName, 10);
+	strcpy(this->loggerName, loggerName);
+	strcpy(this->loggerShortName, loggerShortName);
 	this->cLogLevel = LogLevel_Info;
 	this->conLogger = &DefaultConsoleLogger;
 	if (!exists(this->logsFolderPath))
 	{
 		if (!create_directory(this->logsFolderPath))
 		{
-			snprintf(errorBuffer, bufferSize, "Can't create folder called %s", this->logsFolderPath.c_str());
+			sprintf(errorBuffer, "Can't create folder called %s", this->logsFolderPath.c_str());
 			*status = 1;
 		}
 	}
 	this->LogInfo((char*)"Logger %s started.", loggerName);
-	strncpy(errorBuffer, "", bufferSize);
+	strcpy(errorBuffer, "");
 	*status = 0;
 }
 
@@ -67,38 +67,38 @@ void Logger::ResetConsoleOutput()
 	this->conLogger = &DefaultConsoleLogger;
 }
 
-void Logger::LogLevelStr(LogLevel type, char* buffer, int bufferSize)
+void Logger::LogLevelStr(LogLevel type, char* buffer)
 {
 	switch(type)
 	{
 		case LogLevel_Debug:
 		{
-			strncpy(buffer, "Debug", bufferSize);
+			strcpy(buffer, "Debug");
 			break;
 		}
 		case LogLevel_Info:
 		{
-			strncpy(buffer, "Info", bufferSize);
+			strcpy(buffer, "Info");
 			break;
 		}
 		case LogLevel_Success:
 		{
-			strncpy(buffer, "Success", bufferSize);
+			strcpy(buffer, "Success");
 			break;
 		}
 		case LogLevel_Warning:
 		{
-			strncpy(buffer, "Warning", bufferSize);
+			strcpy(buffer, "Warning");
 			break;
 		}
 		case LogLevel_Error:
 		{
-			strncpy(buffer, "Error", bufferSize);
+			strcpy(buffer, "Error");
 			break;
 		}
 		default:
 		{
-			strncpy(buffer, "", bufferSize);
+			strcpy(buffer, "");
 			break;
 		}
 	}
@@ -124,21 +124,21 @@ void Logger::Log(char* logMSG, LogLevel type, bool forceConsole)
 	char typeOut[10];
 	char typeStr[8];
 	char starterOut[sizeof(typeOut)+sizeof(logSNameOut)+2];
-	char output[500];
-	this->LogLevelStr(type, typeStr, sizeof(typeStr));
+	char output[5000];
+	this->LogLevelStr(type, typeStr);
 	if (type != LogLevel_None)
 	{
-		snprintf(typeOut, sizeof(typeOut), "[%s]", typeStr);
-		snprintf(logSNameOut, sizeof(logSNameOut), "[%s]", this->loggerShortName);
-		snprintf(starterOut, sizeof(starterOut), "%s%s: ", logSNameOut, typeOut);
+		sprintf(typeOut, "[%s]", typeStr);
+		sprintf(logSNameOut, "[%s]", this->loggerShortName);
+		sprintf(starterOut, "%s%s: ", logSNameOut, typeOut);
 	}
 	else
 	{
-		strncpy(typeOut, typeStr, sizeof(typeOut));
-		strncpy(logSNameOut, "", sizeof(logSNameOut));
-		strncpy(starterOut, "", sizeof(starterOut));
+		strcpy(typeOut, typeStr);
+		strcpy(logSNameOut, "");
+		strcpy(starterOut, "");
 	}
-	snprintf(output, sizeof(output), "%s%s\n", starterOut, logMSG);
+	sprintf(output, "%s%s\n", starterOut, logMSG);
 	if ((type >= this->cLogLevel && type != LogLevel_None) || forceConsole)
 	{
 		if (!this->conLogger(output, strlen(output), type))
@@ -158,7 +158,7 @@ void Logger::LogNoneWithConsole(char* format, ...)
 	char outputMSG[500];
 	va_list args;
 	va_start(args, format);
-	vsnprintf(outputMSG, sizeof(outputMSG), format, args);
+	vsprintf(outputMSG, format, args);
 	va_end(args);
 	this->Log(outputMSG, LogLevel_None, true);
 }
@@ -168,7 +168,7 @@ void Logger::LogNone(char* format, ...)
 	char outputMSG[500];
 	va_list args;
 	va_start(args, format);
-	vsnprintf(outputMSG, sizeof(outputMSG), format, args);
+	vsprintf(outputMSG, format, args);
 	va_end(args);
 	this->Log(outputMSG, LogLevel_None);
 }
@@ -179,7 +179,7 @@ void Logger::LogDebug(char* format, ...)
 	char outputMSG[500];
 	va_list args;
 	va_start(args, format);
-	vsnprintf(outputMSG, sizeof(outputMSG), format, args);
+	vsprintf(outputMSG, format, args);
 	va_end(args);
 	this->Log(outputMSG, LogLevel_Debug);
 	#endif
@@ -190,7 +190,7 @@ void Logger::LogInfo(char* format, ...)
 	char outputMSG[500];
 	va_list args;
 	va_start(args, format);
-	vsnprintf(outputMSG, sizeof(outputMSG), format, args);
+	vsprintf(outputMSG, format, args);
 	va_end(args);
 	this->Log(outputMSG, LogLevel_Info);
 }
@@ -200,7 +200,7 @@ void Logger::LogSuccess(char* format, ...)
 	char outputMSG[500];
 	va_list args;
 	va_start(args, format);
-	vsnprintf(outputMSG, sizeof(outputMSG), format, args);
+	vsprintf(outputMSG, format, args);
 	va_end(args);
 	this->Log(outputMSG, LogLevel_Success);
 }
@@ -210,7 +210,7 @@ void Logger::LogWarning(char* format, ...)
 	char outputMSG[500];
 	va_list args;
 	va_start(args, format);
-	vsnprintf(outputMSG, sizeof(outputMSG), format, args);
+	vsprintf(outputMSG, format, args);
 	va_end(args);
 	this->Log(outputMSG, LogLevel_Warning);
 }
@@ -220,7 +220,7 @@ void Logger::LogError(char* format, ...)
 	char outputMSG[500];
 	va_list args;
 	va_start(args, format);
-	vsnprintf(outputMSG, sizeof(outputMSG), format, args);
+	vsprintf(outputMSG, format, args);
 	va_end(args);
 	this->Log(outputMSG, LogLevel_Error);
 }
