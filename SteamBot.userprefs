@@ -4,11 +4,11 @@
     <Files>
       <File FileName="BotManager/logger.h" Line="1" Column="1" />
       <File FileName="BotManager/logger.cpp" Line="1" Column="1" />
-      <File FileName="BotManager/consoleWindow.h" Line="32" Column="108" />
-      <File FileName="BotManager/consoleWindow.cpp" Line="89" Column="39" />
-      <File FileName="BotManager/consoleCmdHandler.h" Line="46" Column="110" />
-      <File FileName="BotManager/consoleCmdHandler.cpp" Line="115" Column="42" />
-      <File FileName="BotManager/main.cpp" Line="48" Column="121" />
+      <File FileName="BotManager/consoleWindow.h" Line="1" Column="1" />
+      <File FileName="BotManager/consoleWindow.cpp" Line="1" Column="1" />
+      <File FileName="BotManager/consoleCmdHandler.h" Line="1" Column="1" />
+      <File FileName="BotManager/consoleCmdHandler.cpp" Line="115" Column="28" />
+      <File FileName="BotManager/main.cpp" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">

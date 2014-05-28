@@ -116,6 +116,7 @@ void consoleCmdHandler::FireCommand(char* msg)
 	if (cmds.find(cmd) != cmds.end())
 	{
 		myLogger->LogDebug((char*)"Found command: %s", cmd);
+		char *args[256];
 		for (int i=0; i<k-1; i++)
 		{
 			strcpy(args[i], splitLine[i+1]);
