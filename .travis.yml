@@ -1,6 +1,9 @@
 language: cpp
 compiler:
   - gcc
+env:
+  - BUILDMODE="-DISERVER=FALSE"
+  - BUILDMODE="-DISERVER=TRUE"
 before_install:
   - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test > /dev/null; fi
   - sudo add-apt-repository -y ppa:boost-latest/ppa > /dev/null
@@ -11,9 +14,11 @@ install:
   - if [ "$CXX" = "g++" ]; then sudo apt-get install -qq g++-4.8 > /dev/null; fi
   - if [ "$CXX" = "g++" ]; then export CXX="g++-4.8"; fi
 before_script:
-  - cmake . -DISDEBUG=true
+  - cmake . -DISDEBUG=true $BUILDMODE
 script:
   - make
+after-script:
+  - if [ "$BUILDMODE" == "-DISERVER=TRUE" ]; then cd Bin/Debug; chmod +x ./BotManager; ./BotManager; fi
 notifications:
   irc:
     channels:

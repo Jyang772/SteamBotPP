@@ -18,7 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+#ifndef ServerMode
 #include "consoleWindow.h"
 #define gtk_builder_get_widget(builder, id) GTK_WIDGET(gtk_builder_get_object(builder, id))
 #define CMD_LOG_LINE "botmgr> "
@@ -91,12 +91,6 @@ static void enterCommand(GtkWidget *widget, gpointer data)
 	gtk_entry_set_text(GTK_ENTRY(cmdLine), "");
 }
 
-CmdStatus QuitCommand(char* msg, char *args[], int numArgs)
-{
-	gtk_widget_destroy(window);
-	return CmdStatus_Passed;
-}
-
 ConsoleWindow::ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger *logger, consoleCmdHandler *cmdHandler, int *status, char* errorBuffer)
 {
 	this->consoleUiFile += consoleUiFilePath;
@@ -141,3 +135,4 @@ ConsoleWindow::ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger
 ConsoleWindow::~ConsoleWindow()
 {
 }
+#endif

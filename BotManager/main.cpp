@@ -18,22 +18,27 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+#ifndef ServerMode
 #include "consoleWindow.h"
-#include <iostream>
 #define MIN_GTK_MAJOR 3
 #define MIN_GTK_MINOR 4
 #define MIN_GTK_MICRO 2
+#else
+#include "consoleCmdHandler.h"
+#endif
+#include <iostream>
 
 using namespace BotManager;
 
 int main (int argc, char *argv[])
 {
+	#ifndef ServerMode
 	if (!GTK_CHECK_VERSION(MIN_GTK_MAJOR, MIN_GTK_MINOR, MIN_GTK_MICRO))
 	{
 		cout << "GTK that I'm compile against is too old! I require: " << MIN_GTK_MAJOR << "." << MIN_GTK_MINOR << "." << MIN_GTK_MICRO << endl;
 		return 1;
 	}
+	#endif
 	char errorBuffer[256];
 	int status;
 	Logger *logger = new Logger((char*)"BotMgrLogger", (char*)"BOTMGR", (char*)"BotLog.log", &status, errorBuffer);
@@ -43,6 +48,7 @@ int main (int argc, char *argv[])
 		delete logger;
 		return 1;
 	}
+	#ifndef ServerMode
 	consoleCmdHandler *cmdHandler = new consoleCmdHandler(logger);
 	gtk_init(&argc, &argv);
 	ConsoleWindow *console = new ConsoleWindow((char*)"BotManager Console", (char*)"uis/mainConsole.ui", logger, cmdHandler, &status, errorBuffer);
@@ -55,8 +61,13 @@ int main (int argc, char *argv[])
 	}
 	gtk_main();
 	logger->ResetConsoleOutput();
+	#else
+	logger->LogInfo("Todo: Build server mode!");
+	#endif
 	logger->LogWarning((char*)"BotManager is now exitting.");
+	#ifndef ServerMode
 	delete console;
+	#endif
 	delete logger;
 	return 0;
 }

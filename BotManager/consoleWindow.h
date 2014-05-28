@@ -18,7 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+#ifndef ServerMode
 #ifndef _consoleWindow_included
 #define _consoleWindow_included
 #include <gtk/gtk.h>
@@ -35,4 +35,5 @@ namespace BotManager
 			path consoleUiFile;
 	};
 }
+#endif
 #endif
