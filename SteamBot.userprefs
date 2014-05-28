@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BotManager/main.cpp">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BotManager/consoleWindow.cpp">
     <Files>
       <File FileName="BotManager/logger.h" Line="1" Column="1" />
       <File FileName="BotManager/logger.cpp" Line="1" Column="1" />
-      <File FileName="BotManager/consoleWindow.h" Line="24" Column="21" />
-      <File FileName="BotManager/consoleWindow.cpp" Line="92" Column="2" />
-      <File FileName="BotManager/consoleCmdHandler.h" Line="1" Column="1" />
+      <File FileName="BotManager/consoleWindow.h" Line="1" Column="1" />
+      <File FileName="BotManager/consoleWindow.cpp" Line="22" Column="19" />
+      <File FileName="BotManager/consoleCmdHandler.h" Line="37" Column="68" />
       <File FileName="BotManager/consoleCmdHandler.cpp" Line="119" Column="19" />
       <File FileName="BotManager/main.cpp" Line="65" Column="25" />
     </Files>
@@ -15,7 +15,7 @@
         <State expanded="True">
           <Node name="BotManager" expanded="True">
             <Node name="Packages" expanded="True" />
-            <Node name="main.cpp" selected="True" />
+            <Node name="consoleWindow.cpp" selected="True" />
           </Node>
         </State>
       </Pad>

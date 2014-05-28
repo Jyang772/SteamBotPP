@@ -2,8 +2,8 @@ language: cpp
 compiler:
   - gcc
 env:
-  - BUILDMODE="-DISERVER=FALSE"
-  - BUILDMODE="-DISERVER=TRUE"
+  - BUILDMODE="-DISSERVER=FALSE"
+  - BUILDMODE="-DISSERVER=TRUE"
 before_install:
   - if [ "$CXX" == "g++" ]; then sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test > /dev/null; fi
   - sudo add-apt-repository -y ppa:boost-latest/ppa > /dev/null
@@ -17,15 +17,19 @@ before_script:
   - cmake . -DISDEBUG=true $BUILDMODE
 script:
   - make
-after-script:
-  - if [ "$BUILDMODE" == "-DISERVER=TRUE" ]; then cd Bin/Debug; chmod +x ./BotManager; ./BotManager; fi
 notifications:
   irc:
     channels:
       - "irc.esper.net#SteamBotBuilds"
     on_success: always
     on_failure: always
-    use_notice: true
+    on_start: always
+    template:
+      - "Build #%{build_number} of %{repository_slug} is complete."
+      - "The branch built was %{branch} and the commit message I recieved was:"
+      - "%{commit_message} from %{author}"
+      - "After %{duration}, the result is %{result}."
+      - "Here is url of build: %{build_url}"
   email:
     recipients:
       - lollol222gg@gmail.com

@@ -24,6 +24,7 @@
 Makefile
 cmake_install.cmake
 CMakeCache.txt
+commitMsg.com
 
 #Folders
 CMakeFiles
