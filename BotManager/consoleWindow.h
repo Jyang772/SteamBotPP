@@ -18,6 +18,7 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef ServerMode
 #ifndef _consoleWindow_included
 #define _consoleWindow_included
@@ -32,7 +33,7 @@ namespace BotManager
 			ConsoleWindow(char* consoleTitle, char* consoleUiFilePath, Logger *logger, consoleCmdHandler *cmdHandler, int *status, char* errorBuffer);
 			virtual ~ConsoleWindow();
 		private:
-			path consoleUiFile;
+			boost::filesystem::path consoleUiFile;
 	};
 }
 #endif

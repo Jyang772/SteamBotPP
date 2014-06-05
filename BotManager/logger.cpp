@@ -24,6 +24,8 @@
 #include <fstream>
 
 using namespace BotManager;
+using namespace std;
+using namespace boost::filesystem;
 
 bool DefaultConsoleLogger(char* output, int outputSize, LogLevel type)
 {

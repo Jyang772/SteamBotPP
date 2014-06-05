@@ -25,6 +25,8 @@
 #define CMD_LOG_LINE "botmgr> "
 
 using namespace BotManager;
+using namespace std;
+using namespace boost::filesystem;
 
 Logger *conLogger;
 GtkBuilder *builder;

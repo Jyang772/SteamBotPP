@@ -35,9 +35,9 @@ namespace BotManager
 		CmdStatus_Errored,
 	};
 	typedef CmdStatus (*cmdFunc)(char* msg, char *args[], int numArgs);
-	typedef tuple<string, bool> cmdArgInfo;
-	typedef map<string, cmdArgInfo> cmdArgInfoMap;
-	typedef pair<string, cmdArgInfo> cmdArgInfoPair;
+	typedef std::tuple<std::string, bool> cmdArgInfo;
+	typedef std::map<std::string, cmdArgInfo> cmdArgInfoMap;
+	typedef std::pair<std::string, cmdArgInfo> cmdArgInfoPair;
 	class consoleCmdHandler
 	{
 		public:

@@ -24,9 +24,6 @@
 #include <stdarg.h>
 #include <boost/filesystem.hpp>
 
-using namespace std;
-using namespace boost::filesystem;
-
 namespace BotManager
 {
 	enum LogLevel
@@ -57,8 +54,8 @@ namespace BotManager
 			char loggerName[30];
 			char loggerShortName[10];
 			LogLevel cLogLevel;
-			path logsFolderPath;
-			path logFilePath;
+			boost::filesystem::path logsFolderPath;
+			boost::filesystem::path logFilePath;
 			consoleLogger conLogger;
 			virtual void LogLevelStr(LogLevel type, char* buffer);
 			virtual bool LogFile(char* output);

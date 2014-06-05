@@ -22,6 +22,8 @@
 #include "consoleCmdHandler.h"
 
 using namespace BotManager;
+using namespace std;
+using namespace boost::filesystem;
 
 typedef map<string, cmdFunc> cmdMap;
 typedef pair<string, cmdFunc> cmdPair;
